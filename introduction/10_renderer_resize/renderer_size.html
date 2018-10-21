@@ -5,9 +5,9 @@
     <meta charset="utf-8">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/89/three.min.js"></script>
     <!-- css file読み込み -->
-    <link rel="stylesheet" href="css/three.css">
+    <link rel="stylesheet" href="../css/three.css">
     <!-- viewpointの設定 -->
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1" /> -->
     <!-- <style>
       body {
         margin: 0;
@@ -35,8 +35,8 @@
         //geometry
         const geometry = new THREE.SphereGeometry(300, 30, 30);
 
-        //material
-        const material = new THREE.MeshBasicMaterial({ wireframe: true });
+        //material(wireframeあり)
+        const material = new THREE.MeshNormalMaterial({ wireframe: true });
 
         //mesh
         const mesh = new THREE.Mesh(geometry, material);
