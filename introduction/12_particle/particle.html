@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/89/three.min.js"></script>
+    <link rel="stylesheet" href="../css/three.css">
+    <script>
+      window.addEventListener('load', init);
+      function init() {
+        const width = 940;
+        const height = 540;
+        rot = 0;//角度
+        const renderer = new THREE.WebGLRenderer({
+          canvas: document.querySelector('#myCanvas')
+        });
+        renderer.setPixelRatio(window.devicePixelRatio);
+        renderer.setSize(width, height);
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(45, width / height);
+
+        //!!星座を作成
+        createStarField();
+        function createStarField() {
+          const geometry = new THREE.Geometry();
+          const SIZE = 3000;
+          const LENGTH = 1000;
+          for (let i = 0; i < LENGTH; i++) {
+            geometry.vertices.push(new THREE.Vector3(
+              SIZE * (Math.random() - 0.5),
+              SIZE * (Math.random() - 0.5),
+              SIZE * (Math.random() - 0.5)
+            ));
+          }
+          //マテリアルを作成
+          //THREE.PointsMaterialクラスは形状を持たない為、視点が変化しても常に正面を向いて表示されます。
+          const material = new THREE.PointsMaterial({
+            size: 10,
+            color: 0xFFFFFF
+          });
+
+          const mesh = new THREE.Points(geometry, material);
+          scene.add(mesh);
+        }
+        tick();
+        function tick() {
+          rot += 1;
+          const radian = rot * Math.PI / 180;
+          camera.position.x = 1000 * Math.sin(radian);
+          camera.position.z = 1000 * Math.cos(radian);
+          camera.lookAt(new THREE.Vector3(0, 0, 0));
+          renderer.render(scene, camera);
+          requestAnimationFrame(tick);
+        }
+      }
+    </script>
+  </head>
+
+  <body>
+    <canvas id="myCanvas"></canvas>
+  </body>
+
+</html>
