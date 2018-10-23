@@ -31,10 +31,10 @@
                 // 画像を読み込む
                 const loader = new THREE.TextureLoader();
 
-                const texture = loader.load('imgs/earthmap1k.jpg');
-                // マテリアルにテクスチャーを設定
+                // マテリアルを作成
                 const material = new THREE.MeshStandardMaterial({
-                    map: texture
+                    map: new THREE.TextureLoader().load('imgs/earthmap1k.jpg'),
+                    side: THREE.DoubleSide,
                 });
                                 
                 //メッシュを作成
