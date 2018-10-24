@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>method</title>
+        <meta charset = "utf-8"/>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/89/three.min.js"></script>
+        <link rel = "stylesheet" href = "../css/three.css">
+        <script>
+            window.addEventListener('load',init);
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            function init(){
+                //レンダラー作成
+                const renderer = new THREE.WebGLRenderer({
+                    canvas: document.querySelector('#myCanvas'),
+                    antialias: true
+                });
+                renderer.setPixelRatio(window.deveicePixelRatio);
+                renderer.setSize(width,height);
+                
+                const scene = new THREE.Scene();
+
+                const camera = new THREE.PerspectiveCamera(45,width/height);
+                camera.position.set(0,0,500);
+
+                const group = new MyGroup();
+                scene.add(group);
+                
+                tick();
+                function tick() {
+                    // 更新命令を実行します。
+                    group.update();
+                    // レンダリング
+                    renderer.render(scene, camera);
+                    requestAnimationFrame(tick);
+                }
+            }
+
+            class MyGroup extends THREE.Group {
+            /** コンストラクターです。 */
+            constructor() {
+                super();
+                // 球体を作成
+                this.sphere = new THREE.Mesh(
+                new THREE.SphereGeometry(40, 20, 40),
+                new THREE.MeshNormalMaterial()
+                );
+                // ドーナツを作成
+                this.donuts = new THREE.Mesh(
+                new THREE.TorusGeometry(120, 40, 60, 60),
+                new THREE.MeshNormalMaterial()
+                );
+                // グループに追加
+                this.add(this.sphere);
+                this.add(this.donuts);
+            }
+            /** 更新命令を定義します。 */
+            update() {
+                // X軸に動かす
+                this.sphere.position.x = 200 * Math.sin(Date.now() / 500);
+                // 回転させる
+                this.donuts.rotation.y += 0.01;
+            }
+        }
+        </script>
+    </head>
+    <body>
+        <canvas id = "myCanvas"></canvas>
+    </body>
+</html>
