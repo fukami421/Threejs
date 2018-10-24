@@ -6,9 +6,46 @@
     //ページの読み込みを待つ
     window.addEventListener('load',init);
     function init(){
+      //constは再代入も再宣言も不可。letは再宣言が不可。
       const width = 960;
       const height = 540;
       let rot = 0;
+
+      //レンダラーを作成
+      const renderer = new THREE.WebGLRenderer({
+        canvas: document.querySelector('#myCanvas')
+      })
+      renderer.setSize(width,height);
+      
+      //シーンを作成
+      const scene = new THREE.Scene();
+
+      //カメラを作成
+      const camera = new THREE.PerspectiveCamera(45,width/height);
+
+      //平行光源を作成
+      const directionalLight = new THREE.DirectionalLight(0xFFFFFF);
+      directionalLight.position.set(1,1,1);
+      scene.add(directionalLight);
+
+      //マテリアルを作成
+      const material = new THREE.MeshPhongMaterial({color:0xFF0000});
+
+      //球体の形状を作成する
+      const geometry = new THREE.SphereGeometry(300,30,30);
+
+      //形状とマテリアルからメッシュする
+      const mesh = new THREE.Mesh(geometry,material);
+
+      //シーンにメッシュを追加する
+      scene.add(mesh);
+
+      //星を作成
+      createStarField();
+      function createStarField(){
+        const geometry = new THREE.Geometry();
+        
+      }
     }
   </script>
 </html>
