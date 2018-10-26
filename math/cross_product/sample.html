@@ -1,1 +1,59 @@
-https://ics.media/entry/15467
+<!-- https://ics.media/entry/15467 -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <charset = "utf-8"/>
+        <title>トロッコ</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/89/three.min.js"></script>
+        <link rel = "stylesheet" href="../../introduction/css/three.css">
+        <script>
+            window.addEventListener('load',init);
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            function init(){
+                const renderer = new THREE.WebGLRenderer({
+                    canvas: document.querySelector('#myCanvas'),
+                    antialias: true
+                });
+                renderer.setPixelRatio(window.setPixelRatio);
+                renderer.setSize(width,height);
+
+                const scene = new THREE.Scene();
+                
+                //camera
+                const camera = new THREE.PerspectiveCamera(90,width/height);
+                camera.position.set(500,150,400);
+                camera.lookAt(new THREE.Vector3(0,0,0));
+                scene.add(camera);
+
+                ////GridHelper(大きさ, １マスの大きさ)
+                const plane = new THREE.GridHelper(600,64);
+                scene.add(plane);
+                
+                //sphere
+                const geometry = new THREE.SphereGeometry(20,100,100);
+                const material = new THREE.MeshNormalMaterial();
+                const mesh = new THREE.Mesh(geometry,material);
+                scene.add(mesh);
+                
+                function rotation(){
+                    for(let i = 0;i < 360;i ++){
+                        mesh.position.x += Math.cos(i * Math.PI() /180);
+                    }
+                }
+                
+                tick();
+                function tick(){
+                    mesh.position.x += 500 * Math.cos(Math.PI() / 180);
+                    renderer.render(scene,camera);
+                    requestAnimationFrame(tick);
+                }
+
+
+            }
+        </script>
+    </head>
+    <body>
+        <canvas id = "myCanvas"></canvas>
+    </body>
+</html>
