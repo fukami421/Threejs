@@ -36,6 +36,7 @@
 
                 // 動画の読み込み
                 const video = document.createElement("video");
+                video.autoplay = true;
                 video.loop = true;
                 video.src = "videos/video.mp4";
                 video.load();
@@ -47,6 +48,11 @@
                 texture.minFilter = THREE.LinearFilter;
                 texture.magFilter = THREE.LinearFilter;
                 texture.format = THREE.RGBFormat;
+                setInterval( function () {
+                    if ( video.readyState >= video.HAVE_CURRENT_DATA ) {
+                        texture.needsUpdate = true;
+                    }
+                }, 1000 / 24 );                
                 // マテリアルの作成
                 const material = new THREE.MeshBasicMaterial({
                 // 画像をテクスチャーとして読み込み
@@ -61,11 +67,6 @@
                 function tick(){
                     renderer.render(scene, camera);
                     requestAnimationFrame(tick);
-                    setInterval( function () {
-                    if ( video.readyState >= video.HAVE_CURRENT_DATA ) {
-                        texture.needsUpdate = true;
-                    }
-                }, 1000 / 24 );                
                 }
 
                 // デバイスの判別
@@ -127,7 +128,20 @@
                 controls.connect();
                 controls.update();
                 window.removeEventListener("deviceorientation", setOrientationControls, true);
-            }                
+            }  
+
+            function vidplay() {
+                if (video.paused) {
+                    video.play();
+                    button.textContent = "||";
+                    button.style.backgroundColor = "#F26964";
+                } else {
+                    video.pause();
+                    button.textContent = ">";
+                    button.style.backgroundColor = "#1253A4";
+                }
+            }
+
         </script>
     </head>
     <body>
