@@ -47,11 +47,6 @@
                 texture.minFilter = THREE.LinearFilter;
                 texture.magFilter = THREE.LinearFilter;
                 texture.format = THREE.RGBFormat;
-                setInterval( function () {
-                    if ( video.readyState >= video.HAVE_CURRENT_DATA ) {
-                        texture.needsUpdate = true;
-                    }
-                }, 1000 / 24 );                
                 // マテリアルの作成
                 const material = new THREE.MeshBasicMaterial({
                 // 画像をテクスチャーとして読み込み
@@ -66,6 +61,11 @@
                 function tick(){
                     renderer.render(scene, camera);
                     requestAnimationFrame(tick);
+                    setInterval( function () {
+                    if ( video.readyState >= video.HAVE_CURRENT_DATA ) {
+                        texture.needsUpdate = true;
+                    }
+                }, 1000 / 24 );                
                 }
 
                 // デバイスの判別
