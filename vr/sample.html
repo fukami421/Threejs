@@ -5,38 +5,6 @@
     <title>Movie Panorama Example</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-    <style>
-        body {
-            margin: 0px;
-            overflow: hidden;
-        }
-
-        #buttonbar {
-            position: fixed;
-            bottom: 50px;
-            right: 50px;
-        }
-
-        #play {
-            width: 60px;
-            height: 60px;
-            background: #F26964;
-            border: 3px solid #fff;
-            border-radius: 70px;
-            -moz-border-radius: 70px;
-            -webkit-border-radius: 70px;
-            color: #fff;
-            line-height: 60px;
-            font-size: 22px;
-            font-weight: bold;
-            text-align: center;
-            cursor: pointer;
-        }
-
-        #play:hover {
-            opacity: 0.8;
-        }
-    </style>
 </head>
 
 <body>
@@ -49,36 +17,37 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/89/three.min.js"></script>
     <script src="js/DeviceOrientationControls.js"></script>
     <script src="js/OrbitControls.js"></script>
+    <link rel="stylesheet" href="css/vr.css">
 
     <script>
         (function () {
 
-            var width = window.innerWidth,
-                height = window.innerHeight;
+            const width = window.innerWidth;
+            const height = window.innerHeight;
 
-            var button;
+            let button;
 
             //scene
 
-            var scene = new THREE.Scene();
+            const scene = new THREE.Scene();
 
             //mesh
 
-            var geometry = new THREE.SphereGeometry(5, 60, 40);
+            const geometry = new THREE.SphereGeometry(5, 60, 40);
             geometry.scale(- 1, 1, 1);
 
             //動画
 
-            var video = document.createElement('video');
+            const video = document.createElement('video');
             video.width = 640;
             video.height = 360;
             video.autoplay = true;
             video.loop = true;
             video.src = "videos/video.mp4";
-            var texture = new THREE.VideoTexture(video);
+            const texture = new THREE.VideoTexture(video);
             texture.minFilter = THREE.LinearFilter;
 
-            var material = new THREE.MeshBasicMaterial({ map: texture });
+            const material = new THREE.MeshBasicMaterial({ map: texture });
 
             //静止画
 
@@ -86,7 +55,7 @@
                map: THREE.ImageUtils.loadTexture( 'test.jpg' )
             } );*/
 
-            sphere = new THREE.Mesh(geometry, material);
+            const sphere = new THREE.Mesh(geometry, material);
 
             scene.add(sphere);
 
