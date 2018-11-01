@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    <canvas id="stage"></canvas>
+    <div id="stage"></div>
 
     <div id="buttonbar">
         <div id="play">||</div>
@@ -28,14 +28,11 @@
             const height = window.innerHeight;
 
             //render
-            const renderer = new THREE.WebGLRenderer({
-                canvas: ducument.querySelector('#stage'),
-            });
+            const renderer = new THREE.WebGLRenderer();
             renderer.setSize(width, height);
             renderer.setClearColor({ color: 0x000000 });
             document.getElementById('stage').appendChild(renderer.domElement);
             renderer.render(scene, camera);
-
 
             //button
             let button;
