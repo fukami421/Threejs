@@ -75,16 +75,8 @@
             //control
             const controls = new THREE.OrbitControls(camera, renderer.domElement);
 
-            function render() {
-                renderer.render(scene, camera);
-                requestAnimationFrame(render);
-                window.addEventListener('resize', onWindowResize, false);
-                button = document.getElementById("play");
-                button.addEventListener('click', vidplay, false);
-
-                controls.update();
-            }
             render();
+
             function onWindowResize() {
                 camera.aspect = window.innerWidth / window.innerHeight;
                 camera.updateProjectionMatrix();
@@ -101,6 +93,15 @@
                     button.textContent = ">";
                     button.style.backgroundColor = "#1253A4";
                 }
+            }
+
+            function render() {
+                renderer.render(scene, camera);
+                requestAnimationFrame(render);
+                window.addEventListener('resize', onWindowResize, false);
+                button = document.getElementById("play");
+                button.addEventListener('click', vidplay, false);
+                controls.update();
             }
 
         }
