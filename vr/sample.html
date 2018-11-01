@@ -23,7 +23,6 @@
         //ページの読み込みを待つ
         window.addEventListener('load', init);
         function init() {
-            //サイズを指定
             const width = window.innerWidth;
             const height = window.innerHeight;
 
@@ -76,17 +75,16 @@
             //control
             const controls = new THREE.OrbitControls(camera, renderer.domElement);
 
-            render();
             function render() {
                 renderer.render(scene, camera);
                 requestAnimationFrame(render);
-                video.play();
                 window.addEventListener('resize', onWindowResize, false);
                 button = document.getElementById("play");
                 button.addEventListener('click', vidplay, false);
 
                 controls.update();
             }
+            render();
             function onWindowResize() {
                 camera.aspect = window.innerWidth / window.innerHeight;
                 camera.updateProjectionMatrix();
@@ -104,6 +102,7 @@
                     button.style.backgroundColor = "#1253A4";
                 }
             }
+
         }
     </script>
 </body>
