@@ -41,6 +41,7 @@
             const video = document.createElement('video');
             video.width = 640;
             video.height = 360;
+            video.play();
             video.autoplay = true;
             video.loop = true;
             video.src = "videos/video.mp4";
@@ -93,17 +94,17 @@
                 renderer.setSize(window.innerWidth, window.innerHeight);
             }
 
-            function vidplay() {
-                if (video.paused) {
-                    video.play();
-                    button.textContent = "||";
-                    button.style.backgroundColor = "#F26964";
-                } else {
-                    video.pause();
-                    button.textContent = ">";
-                    button.style.backgroundColor = "#1253A4";
-                }
-            }
+            // function vidplay() {
+            //     if (video.paused) {
+            //         video.play();
+            //         button.textContent = "||";
+            //         button.style.backgroundColor = "#F26964";
+            //     } else {
+            //         video.pause();
+            //         button.textContent = ">";
+            //         button.style.backgroundColor = "#1253A4";
+            //     }
+            // }
         }
     </script>
 </body>
