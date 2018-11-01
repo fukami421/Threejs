@@ -76,34 +76,34 @@
             //control
             const controls = new THREE.OrbitControls(camera, renderer.domElement);
 
+            render();
             function render() {
-                video.play();
-                requestAnimationFrame(render);
                 renderer.render(scene, camera);
+                requestAnimationFrame(render);
+                video.play();
                 window.addEventListener('resize', onWindowResize, false);
                 button = document.getElementById("play");
                 button.addEventListener('click', vidplay, false);
 
                 controls.update();
             }
-            render();
             function onWindowResize() {
                 camera.aspect = window.innerWidth / window.innerHeight;
                 camera.updateProjectionMatrix();
                 renderer.setSize(window.innerWidth, window.innerHeight);
             }
 
-            // function vidplay() {
-            //     if (video.paused) {
-            //         video.play();
-            //         button.textContent = "||";
-            //         button.style.backgroundColor = "#F26964";
-            //     } else {
-            //         video.pause();
-            //         button.textContent = ">";
-            //         button.style.backgroundColor = "#1253A4";
-            //     }
-            // }
+            function vidplay() {
+                if (video.paused) {
+                    video.play();
+                    button.textContent = "||";
+                    button.style.backgroundColor = "#F26964";
+                } else {
+                    video.pause();
+                    button.textContent = ">";
+                    button.style.backgroundColor = "#1253A4";
+                }
+            }
         }
     </script>
 </body>
