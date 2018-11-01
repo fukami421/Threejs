@@ -20,8 +20,9 @@
     <link rel="stylesheet" href="css/vr.css">
 
     <script>
-        (function () {
-
+        //ページの読み込みを待つ
+        window.addEventListener('load', init);
+        function init() {
             const width = window.innerWidth;
             const height = window.innerHeight;
 
@@ -102,10 +103,7 @@
                     button.style.backgroundColor = "#1253A4";
                 }
             }
-
-        })();
-
-
+        }
     </script>
 </body>
 
