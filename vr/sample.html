@@ -33,6 +33,8 @@
             });
             renderer.setSize(width, height);
             renderer.setClearColor({ color: 0x000000 });
+            document.getElementById('stage').appendChild(renderer.domElement);
+            renderer.render(scene, camera);
 
 
             //button
