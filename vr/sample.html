@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    <div id="stage"></div>
+    <canvas id="stage"></canvas>
 
     <div id="buttonbar">
         <div id="play">||</div>
@@ -23,8 +23,17 @@
         //ページの読み込みを待つ
         window.addEventListener('load', init);
         function init() {
+            //サイズを指定
             const width = window.innerWidth;
             const height = window.innerHeight;
+
+            //render
+            const renderer = new THREE.WebGLRenderer({
+                canvas: ducument.querySelector('#stage'),
+            });
+            renderer.setSize(width, height);
+            renderer.setClearColor({ color: 0x000000 });
+
 
             //button
             let button;
@@ -64,13 +73,6 @@
             const camera = new THREE.PerspectiveCamera(75, width / height, 1, 1000);
             camera.position.set(0, 0, 0.1);
             camera.lookAt(sphere.position);
-
-            //render
-            const renderer = new THREE.WebGLRenderer();
-            renderer.setSize(width, height);
-            renderer.setClearColor({ color: 0x000000 });
-            document.getElementById('stage').appendChild(renderer.domElement);
-            renderer.render(scene, camera);
 
             //control
             const controls = new THREE.OrbitControls(camera, renderer.domElement);
