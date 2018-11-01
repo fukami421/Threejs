@@ -41,7 +41,6 @@
             const video = document.createElement('video');
             video.width = 640;
             video.height = 360;
-            video.play();
             video.autoplay = true;
             video.loop = true;
             video.src = "videos/video.mp4";
@@ -81,7 +80,7 @@
                 requestAnimationFrame(render);
                 window.addEventListener('resize', onWindowResize, false);
                 renderer.render(scene, camera);
-
+                video.play();
                 button = document.getElementById("play");
                 button.addEventListener('click', vidplay, false);
 
