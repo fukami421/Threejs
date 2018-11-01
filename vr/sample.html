@@ -77,9 +77,9 @@
             const controls = new THREE.OrbitControls(camera, renderer.domElement);
 
             function render() {
+                video.play();
                 requestAnimationFrame(render);
                 renderer.render(scene, camera);
-                video.play();
                 window.addEventListener('resize', onWindowResize, false);
                 button = document.getElementById("play");
                 button.addEventListener('click', vidplay, false);
