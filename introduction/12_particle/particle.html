@@ -47,7 +47,8 @@
           rot += 1;
           const radian = rot * Math.PI / 180;
           camera.position.x = 1000 * Math.sin(radian);
-          camera.position.z = 1000 * Math.cos(radian);
+          camera.position.y = 1000 * Math.sin(radian);
+          camera.position.z = 2000 * Math.cos(radian);
           camera.lookAt(new THREE.Vector3(0, 0, 0));
           renderer.render(scene, camera);
           requestAnimationFrame(tick);
