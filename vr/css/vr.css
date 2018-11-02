@@ -3,3 +3,29 @@ body{
   margin:0;
   overflow:hidden;
 }
+
+#buttonbar {
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+}
+
+#play {
+    width: 60px;
+    height: 60px;
+    background: #F26964;
+    border: 3px solid #fff;
+    border-radius: 70px;
+    -moz-border-radius: 70px;
+    -webkit-border-radius: 70px;
+    color: #fff;
+    line-height: 60px;
+    font-size: 22px;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+}
+
+#play:hover {
+    opacity: 0.8;
+}
