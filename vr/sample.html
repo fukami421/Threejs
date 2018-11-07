@@ -83,6 +83,7 @@
                 renderer.setSize(window.innerWidth, window.innerHeight);
             }
 
+            button.textContent = ">";
             function vidplay() {
                 if (video.paused) {
                     video.play();
@@ -100,7 +101,6 @@
                 requestAnimationFrame(render);
                 window.addEventListener('resize', onWindowResize, false);
                 button = document.getElementById("play");
-                button.textContent = ">";
                 button.addEventListener('click', vidplay, false);
                 controls.update();
             }
