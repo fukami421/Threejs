@@ -28,7 +28,6 @@
 
             //button
             let button;
-            button.textContent = ">";
 
             //scene
             const scene = new THREE.Scene();
@@ -101,6 +100,7 @@
                 requestAnimationFrame(render);
                 window.addEventListener('resize', onWindowResize, false);
                 button = document.getElementById("play");
+                button.textContent = ">";
                 button.addEventListener('click', vidplay, false);
                 controls.update();
             }
