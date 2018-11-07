@@ -75,6 +75,8 @@
             //control
             const controls = new THREE.OrbitControls(camera, renderer.domElement);
 
+            button.textContent = ">";
+            button.style.backgroundColor = "#1253A4";
             render();
 
             function onWindowResize() {
@@ -83,9 +85,6 @@
                 renderer.setSize(window.innerWidth, window.innerHeight);
             }
 
-            button.textContent = ">";
-            button.style.backgroundColor = "#1253A4";
-            video.play();
             function vidplay() {
                 if (video.paused) {
                     video.play();
