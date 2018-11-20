@@ -29,3 +29,7 @@ body{
 #play:hover {
     opacity: 0.8;
 }
+
+#buttonbar{
+    background-color: "#1253A4";
+}
