@@ -56,8 +56,6 @@
       // シーンにメッシュを追加します
       scene.add(mesh);
       
-      //groupを作成
-      const group = new THREE.Group();
       // 星屑を作成します (カメラの動きをわかりやすくするため)
       createStarField();
       function createStarField() {
@@ -78,8 +76,7 @@
         mesh.rotation.x = Math.random() * 2 * Math.PI;
         mesh.rotation.y = Math.random() * 2 * Math.PI;
         mesh.rotation.z = Math.random() * 2 * Math.PI;
-        group.add(mesh);
-        scene.add(group);
+        scene.add(mesh);
         // 配列に保存
         // meshList.push(mesh);
       }
@@ -93,8 +90,6 @@
         // 角度に応じてカメラの位置を設定
         camera.position.x = 1000 * Math.sin(radian);
         camera.position.z = 1000 * Math.cos(radian);
-        group.position.x = 1000 * Math.sin(-radian);
-        group.position.z = 1000 * Math.cos(-radian);        
         // meshList.position.x = 1000 * Math.sin(-radian);
         // meshList.position.z = 1000 * Math.cos(-radian);
         // 原点方向を見つめる
