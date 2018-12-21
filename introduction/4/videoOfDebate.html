@@ -46,33 +46,32 @@
       const geometry = new THREE.SphereGeometry(300, 30, 30);
       
       // 形状とマテリアルからメッシュを作成します
-      const mesh = new THREE.Mesh(geometry, material);
+//      const mesh = new THREE.Mesh(geometry, material);
       
       // シーンにメッシュを追加します
-      scene.add(mesh);
+//      scene.add(mesh);
       
       // 星屑を作成します (カメラの動きをわかりやすくするため)
       createStarField();
       function createStarField() {
         // 形状データを作成
-        const geometry = new THREE.Geometry();
-        for (let i = 0; i < 1000; i++) {
-          geometry.vertices.push(new THREE.Vector3(
-            3000 * (Math.random() - 0.5),
-            3000 * (Math.random() - 0.5),
-            3000 * (Math.random() - 0.5),
-          ));
-        }
-        
-        // マテリアルを作成
-        const material = new THREE.PointsMaterial({
-          size: 10,
-          color: 0xFFFFFF,
+        const geometry = new THREE.BoxBufferGeometry(100, 100, 100);
+        // マウスとの交差を調べたいものは配列に格納する
+        for (let i = 0; i < 30; i++) {
+          const material = new THREE.MeshStandardMaterial({
+            map: new THREE.TextureLoader().load('./S__22347830.jpg'),
+            side: THREE.DoubleSide,
         });
-        
-        // 物体を作成
-        const mesh = new THREE.Points(geometry, material);
+        const mesh = new THREE.Mesh(geometry, material);
+        mesh.position.x = (Math.random()) * 800;
+        mesh.position.y = (Math.random() - 0.5) * 800;
+        mesh.position.z = (Math.random() - 0.5) * 800;
+        mesh.rotation.x = Math.random() * 2 * Math.PI;
+        mesh.rotation.y = Math.random() * 2 * Math.PI;
+        mesh.rotation.z = Math.random() * 2 * Math.PI;
         scene.add(mesh);
+        // 配列に保存
+        }
       }
       tick();
       // 毎フレーム時に実行されるループイベントです
@@ -81,8 +80,9 @@
         // ラジアンに変換する
         const radian = rot * Math.PI / 180;
         // 角度に応じてカメラの位置を設定
-        camera.position.x = 1000 * Math.sin(radian);
+        camera.position.x = 800 * Math.sin(radian);
         camera.position.z = 1000 * Math.cos(radian);
+        camera.position.y = 1000 * Math.cos(radian);
         // 原点方向を見つめる
         camera.lookAt(new THREE.Vector3(0, 0, 0));
         // レンダリング
