@@ -10,6 +10,18 @@
       const width = 1370;
       const height = 790;
       let rot = 0;
+      const image = [
+        "'./S22347830.jpg'",
+        "'./S22347830.jpg'",
+        "'./S22347830.jpg'",
+        "'./S22347830.jpg'",
+        "'./S22347830.jpg'",
+        "'./S22347830.jpg'",
+        "'./S22347830.jpg'",
+        "'./S22347830.jpg'",
+        "'./S22347830.jpg'",
+        "'./S22347830.jpg'"
+      ]
 
       // レンダラーを作成
       const renderer = new THREE.WebGLRenderer({
@@ -23,18 +35,10 @@
       // カメラを作成
       const camera = new THREE.PerspectiveCamera(45, width / height);
       
-      // 平行光源を作成
-//      const directionalLight = new THREE.DirectionalLight();
-//      directionalLight.position.set(1, 1, 1);
-//      scene.add(directionalLight);
-
       // 環境光源を作成
       // new THREE.AmbientLight(色, 光の強さ)
       const light = new THREE.AmbientLight(0xFFFFFF, 0.8);
       scene.add(light);     
-
-      //マテリアルを作成
-//      const material = new THREE.MeshPhongMaterial({color:0xFF0000});
 
       // マテリアルを作成
       const material = new THREE.MeshStandardMaterial({
@@ -42,7 +46,7 @@
           side: THREE.DoubleSide,
       });      
       // 球体の形状を作成します
-      const geometry = new THREE.SphereGeometry(300, 30, 30);
+      const geometry = new THREE.SphereGeometry(10, 30, 30);
       
       // 形状とマテリアルからメッシュを作成します
       const mesh = new THREE.Mesh(geometry, material);
@@ -54,25 +58,25 @@
       createStarField();
       function createStarField() {
         // 形状データを作成
-        const geometry = new THREE.BoxBufferGeometry(100, 100, 100);
+        const geometry = new THREE.BoxBufferGeometry(125, 125, 125);
         // マウスとの交差を調べたいものは配列に格納する
-        for (let i = 0; i < 30; i++) {
+        for (let i = 0; i < 10; i++) {
           // const material = new THREE.MeshStandardMaterial({color: 0xFF0000});
-          const material = new THREE.MeshStandardMaterial({
-            map: new THREE.TextureLoader().load('./S22347830.jpg'),
-            side: THREE.DoubleSide,
-          });
-          const mesh = new THREE.Mesh(geometry, material);
-          mesh.position.x = (Math.random()) * 800;
-          mesh.position.y = (Math.random() - 0.5) * 800;
-          mesh.position.z = (Math.random() - 0.5) * 800;
-          mesh.rotation.x = Math.random() * 2 * Math.PI;
-          mesh.rotation.y = Math.random() * 2 * Math.PI;
-          mesh.rotation.z = Math.random() * 2 * Math.PI;
-          scene.add(mesh);
-          // 配列に保存
-        }
-        }
+        const material = new THREE.MeshStandardMaterial({
+          map: new THREE.TextureLoader().load(image[i]),
+          side: THREE.DoubleSide,
+        });
+        const mesh = new THREE.Mesh(geometry, material);
+        mesh.position.x = (Math.random() - 0.5) * 1000;
+        mesh.position.y = (Math.random() - 0.5) * 800;
+        mesh.position.z = (Math.random() - 0.5) * 1000;
+        mesh.rotation.x = Math.random() * 2 * Math.PI;
+        mesh.rotation.y = Math.random() * 2 * Math.PI;
+        mesh.rotation.z = Math.random() * 2 * Math.PI;
+        scene.add(mesh);
+        // 配列に保存
+      }
+    }
       tick();
       // 毎フレーム時に実行されるループイベントです
       function tick() {
@@ -80,9 +84,8 @@
         // ラジアンに変換する
         const radian = rot * Math.PI / 180;
         // 角度に応じてカメラの位置を設定
-        camera.position.x = 800 * Math.sin(radian);
+        camera.position.x = 1000 * Math.sin(radian);
         camera.position.z = 1000 * Math.cos(radian);
-        camera.position.y = 1000 * Math.cos(radian);
         // 原点方向を見つめる
         camera.lookAt(new THREE.Vector3(0, 0, 0));
         // レンダリング
