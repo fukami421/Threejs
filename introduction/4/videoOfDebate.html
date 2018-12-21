@@ -58,10 +58,11 @@
         const geometry = new THREE.BoxBufferGeometry(100, 100, 100);
         // マウスとの交差を調べたいものは配列に格納する
         for (let i = 0; i < 30; i++) {
-          const material = new THREE.MeshStandardMaterial({
-            map: new THREE.TextureLoader().load('./S__22347830.jpg'),
-            side: THREE.DoubleSide,
-          });
+          const material = new THREE.MeshStandardMaterial({color: 0xFF0000});
+          // const material = new THREE.MeshStandardMaterial({
+          //   map: new THREE.TextureLoader().load('./S__22347830.jpg'),
+          //   side: THREE.DoubleSide,
+          // });
           const mesh = new THREE.Mesh(geometry, material);
           mesh.position.x = (Math.random()) * 800;
           mesh.position.y = (Math.random() - 0.5) * 800;
@@ -72,7 +73,7 @@
           scene.add(mesh);
           // 配列に保存
         }
-      }
+        }
       tick();
       // 毎フレーム時に実行されるループイベントです
       function tick() {
