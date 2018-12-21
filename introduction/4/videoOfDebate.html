@@ -78,7 +78,7 @@
         mesh.rotation.z = Math.random() * 2 * Math.PI;
         scene.add(mesh);
         // 配列に保存
-        meshList.push(mesh);
+        // meshList.push(mesh);
       }
     }
       tick();
@@ -90,8 +90,8 @@
         // 角度に応じてカメラの位置を設定
         camera.position.x = 1000 * Math.sin(radian);
         camera.position.z = 1000 * Math.cos(radian);
-        meshList.position.x = 1000 * Math.sin(-radian);
-        meshList.position.z = 1000 * Math.cos(-radian);
+        // meshList.position.x = 1000 * Math.sin(-radian);
+        // meshList.position.z = 1000 * Math.cos(-radian);
         // 原点方向を見つめる
         camera.lookAt(new THREE.Vector3(0, 0, 0));
         // レンダリング
