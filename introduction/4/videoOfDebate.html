@@ -91,11 +91,11 @@
         // マウスとの交差を調べたいものは配列に格納する
         const meshList = [];
         for (let i = 0; i < 37; i++) {
-          const material = new THREE.MeshStandardMaterial({color: 0xFF0000});
-        //   const material = new THREE.MeshStandardMaterial({
-        //   map: new THREE.TextureLoader().load(image[i]),
-        //   side: THREE.DoubleSide,
-        // });
+          // const material = new THREE.MeshStandardMaterial({color: 0xFF0000});
+          const material = new THREE.MeshStandardMaterial({
+          map: new THREE.TextureLoader().load(image[i]),
+          side: THREE.DoubleSide,
+        });
         const mesh = new THREE.Mesh(geometry, material);
         mesh.position.x = (Math.random() - 0.5) * 1000;
         mesh.position.y = (Math.random() - 0.5) * 800;
