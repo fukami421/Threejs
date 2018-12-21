@@ -8,11 +8,11 @@
     window.addEventListener('load', init);
     function init() {
       // サイズを指定
-      const width = 1370;
-      const height = 790;
+      const width = window.parent.screen.width;
+      const height = window.parent.screen.height;
       let rot = 0;
       const image = [
-        "'./S22347830.jpg'",
+        "./S22347830.jpg",
         "./S22347830.jpg",
         "./S22347830.jpg",
         "./S22347830.jpg",
@@ -62,9 +62,10 @@
         // 形状データを作成
         const geometry = new THREE.BoxBufferGeometry(125, 125, 125);
         // マウスとの交差を調べたいものは配列に格納する
+        const meshList = [];
         for (let i = 0; i < 10; i++) {
           // const material = new THREE.MeshStandardMaterial({color: 0xFF0000});
-        const material = new THREE.MeshStandardMaterial({
+          const material = new THREE.MeshStandardMaterial({
           map: new THREE.TextureLoader().load(image[i]),
           side: THREE.DoubleSide,
         });
@@ -77,6 +78,7 @@
         mesh.rotation.z = Math.random() * 2 * Math.PI;
         scene.add(mesh);
         // 配列に保存
+        meshList.push(mesh);
       }
     }
       tick();
@@ -88,6 +90,8 @@
         // 角度に応じてカメラの位置を設定
         camera.position.x = 1000 * Math.sin(radian);
         camera.position.z = 1000 * Math.cos(radian);
+        meshList.position.x = 1000 * Math.sin(-radian);
+        meshList.position.z = 1000 * Math.cos(-radian);
         // 原点方向を見つめる
         camera.lookAt(new THREE.Vector3(0, 0, 0));
         // レンダリング
