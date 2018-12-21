@@ -12,17 +12,44 @@
       const height = window.parent.screen.height;
       let rot = 0;
       const image = [
-        "./eriko0.jpg",
-        "./eriko1.jpg",
-        "./eriko2.jpg",
-        "./kennsei0.jpg",
-        "./kennsei1.jpg",
-        "./kennsei2.jpg",
-        "./S22347830.jpg",
-        "./S22347830.jpg",
-        "./S22347830.jpg",
-        "./S22347830.jpg"      
-      ]
+        "./img/eriko0.jpg",
+        "./img/eriko1.jpg",
+        "./img/eriko2.jpg",
+        "./img/kennsei0.jpg",
+        "./img/kennsei1.jpg",
+        "./img/kennsei2.jpg",
+        "./img/syogo0.jpg",
+        "./img/syogo1.jpg",
+        "./img/syogo2.jpg",
+        "./img/yoshitaka0.jpg",      
+        "./img/yoshitaka1.jpg",      
+        "./img/yoshitaka2.jpg",      
+        "./img/yoshitaka3.jpg",      
+        "./img/yoshitaka4.jpg",      
+        "./img/naoki0.jpg",      
+        "./img/naoki1.jpg",      
+        "./img/naoki2.jpg",      
+        "./img/naoki3.jpg",      
+        "./img/miku0.jpg",      
+        "./img/miku1.jpg",      
+        "./img/miku2.jpg",      
+        "./img/mayumi0.jpg",      
+        "./img/mayumi1.jpg",      
+        "./img/mayumi2.jpg",      
+        "./img/madoka0.jpg",      
+        "./img/madoka1.jpg",      
+        "./img/madoka2.jpg",      
+        "./img/haruna0.jpg",      
+        "./img/haruna1.jpg",      
+        "./img/haruna2.jpg",      
+        "./img/haruna3.jpg",      
+        "./img/every0.jpg",      
+        "./img/every1.jpg",      
+        "./img/every2.jpg",      
+        "./img/every3.jpg",      
+        "./img/every4.jpg",      
+        "./img/every5.jpg"      
+        ]
 
       // レンダラーを作成
       const renderer = new THREE.WebGLRenderer({
@@ -39,7 +66,7 @@
       
       // 環境光源を作成
       // new THREE.AmbientLight(色, 光の強さ)
-      const light = new THREE.AmbientLight(0xFFFFFF, 0.8);
+      const light = new THREE.AmbientLight(0xFFFFFF, 1.2);
       scene.add(light);     
 
       // マテリアルを作成
@@ -63,7 +90,7 @@
         const geometry = new THREE.BoxBufferGeometry(140, 140, 140);
         // マウスとの交差を調べたいものは配列に格納する
         const meshList = [];
-        for (let i = 0; i < 10; i++) {
+        for (let i = 0; i < 37; i++) {
           // const material = new THREE.MeshStandardMaterial({color: 0xFF0000});
           const material = new THREE.MeshStandardMaterial({
           map: new THREE.TextureLoader().load(image[i]),
@@ -90,6 +117,7 @@
         // 角度に応じてカメラの位置を設定
         camera.position.x = 1000 * Math.sin(radian);
         camera.position.z = 1000 * Math.cos(radian);
+        camera.position.y = 1000 * Math.cos(radian);
         // meshList.position.x = 1000 * Math.sin(-radian);
         // meshList.position.z = 1000 * Math.cos(-radian);
         // 原点方向を見つめる
