@@ -93,6 +93,8 @@
         // 角度に応じてカメラの位置を設定
         camera.position.x = 1000 * Math.sin(radian);
         camera.position.z = 1000 * Math.cos(radian);
+        group.position.x = 1000 * Math.sin(-radian);
+        group.position.z = 1000 * Math.cos(-radian);        
         // meshList.position.x = 1000 * Math.sin(-radian);
         // meshList.position.z = 1000 * Math.cos(-radian);
         // 原点方向を見つめる
