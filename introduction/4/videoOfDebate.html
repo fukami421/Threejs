@@ -2,6 +2,7 @@
 <head>
   <meta charset="utf-8"/>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/89/three.min.js"></script>
+  <link rel = "stylesheet" href="./css/video.css">   
   <script>
     // ページの読み込みを待つ
     window.addEventListener('load', init);
@@ -26,6 +27,7 @@
       // レンダラーを作成
       const renderer = new THREE.WebGLRenderer({
         canvas: document.querySelector('#myCanvas'),
+        alpha:true
       });
       renderer.setSize(width, height);
       
@@ -95,7 +97,7 @@
     }
   </script>
 </head>
-<body>
+<body >
   <canvas id="myCanvas"></canvas>
 </body>
 </html>
