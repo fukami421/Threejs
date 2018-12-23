@@ -1,3 +1,4 @@
+<!-- 球体の周りに星を散りばめる -->
 <html>
 <head>
   <meta charset="utf-8"/>
@@ -44,24 +45,26 @@
       createStarField();
       function createStarField() {
         // 形状データを作成
-        const geometry = new THREE.Geometry();
+        const geometry = new THREE.Geometry(30,3,3);
         for (let i = 0; i < 1000; i++) {
           geometry.vertices.push(new THREE.Vector3(
-            3000 * (Math.random() - 0.5),
-            3000 * (Math.random() - 0.5),
-            3000 * (Math.random() - 0.5),
+            800 * (Math.random() - 0.5),
+            800 * (Math.random() - 0.5),
+            800 * (Math.random() - 0.5),
           ));
         }
         
         // マテリアルを作成
-        const material = new THREE.PointsMaterial({
-          size: 10,
-          color: 0xFFFFFF,
-        });
+        // for(let i = 0;i < 3000;i++){
+          const material = new THREE.PointsMaterial({
+            size: 10,//ここでサイズを変更する
+            color: 0xFFFFFF,
+          });
+          const mesh = new THREE.Points(geometry, material);
+        scene.add(mesh);
+        // }
         
         // 物体を作成
-        const mesh = new THREE.Points(geometry, material);
-        scene.add(mesh);
       }
       tick();
       // 毎フレーム時に実行されるループイベントです
